@@ -1,72 +1,80 @@
-/* Importiamo il font Bookman Old Style tramite Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Bookman+Old+Style:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap'); /* Corsivo elegante */
+// Simulazione database utenti
+const users = [];
 
-/* Generali */
-body {
-  font-family: 'Bookman Old Style', serif; /* Font generale */
-  margin: 0;
-  padding: 0;
-  background-color: #f9f9f9;
+// Funzione per mostrare una sezione e nascondere le altre
+function showSection(sectionId) {
+  document.querySelectorAll('section').forEach(section => {
+    section.style.display = section.id === sectionId ? 'block' : 'none';
+  });
 }
 
-header {
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-}
+// Registrazione utente
+document.getElementById('register-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const email = document.getElementById('register-email').value;
+  const password = document.getElementById('register-password').value;
 
-header h1 {
-  font-family: 'Playfair Display', serif; /* Corsivo elegante */
-  font-style: italic;
-  font-weight: 400;
-  font-size: 2rem;
-  margin: 0;
-}
+  // Controllo se l'utente è già registrato
+  if (users.some(user => user.email === email)) {
+    alert('Utente già registrato. Prova ad accedere.');
+    return;
+  }
 
-main {
-  max-width: 600px;
-  margin: 20px auto;
-  background: white;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-}
+  // Aggiunta utente al "database"
+  users.push({ email, password });
+  alert('Registrazione completata! Ora puoi accedere.');
+  showSection('login-section');
+});
 
-h1, h2 {
-  color: #333;
-}
+// Passa alla sezione login
+document.getElementById('go-to-login').addEventListener('click', function (e) {
+  e.preventDefault();
+  showSection('login-section');
+});
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
+// Passa alla sezione registrazione
+document.getElementById('go-to-register').addEventListener('click', function (e) {
+  e.preventDefault();
+  showSection('register-section');
+});
 
-input, button {
-  padding: 10px;
-  font-size: 16px;
-  font-family: 'Bookman Old Style', serif;
-}
+// Login utente
+document.getElementById('login-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
 
-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
+  // Controllo credenziali
+  const user = users.find(user => user.email === email && user.password === password);
+  if (user) {
+    alert('Login riuscito!');
+    showSection('tracker-section');
+  } else {
+    alert('Credenziali errate. Riprova.');
+  }
+});
 
-button:hover {
-  background-color: #45a049;
-}
+// Calcolo giorni e mesi trascorsi
+document.getElementById('tracker-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const startDate = new Date(document.getElementById('start-date').value);
+  const today = new Date();
 
-footer {
-  text-align: center;
-  margin-top: 20px;
-  color: #555;
-}
+  if (startDate > today) {
+    alert('La data di inizio gravidanza non può essere nel futuro!');
+    return;
+  }
 
-.hidden {
-  display: none;
-}
+  const diffTime = today - startDate;
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  const diffMonths = Math.floor(diffDays / 30);
+
+  const resultText = `Sono trascorsi ${diffDays} giorni (${diffMonths} mesi) dalla data di inizio gravidanza.`;
+  document.getElementById('elapsed-time').textContent = resultText;
+  document.getElementById('result').classList.remove('hidden');
+});
+
+// Logout
+document.getElementById('logout').addEventListener('click', function () {
+  showSection('login-section');
+});
