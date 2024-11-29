@@ -1,6 +1,6 @@
-/* Importiamo i font */
+/* Importiamo il font Bookman Old Style tramite Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Bookman+Old+Style:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap'); /* Corsivo elegante */
 
 /* Generali */
 body {
@@ -11,7 +11,7 @@ body {
 }
 
 header {
-  background-color: #FF69B4; /* Rosa */
+  background-color: #FF69B4; /* Colore rosa */
   color: white;
   text-align: center;
   padding: 1rem;
@@ -51,14 +51,14 @@ input, button {
 }
 
 button {
-  background-color: #FF69B4; /* Rosa */
+  background-color: #FF69B4; /* Colore rosa */
   color: white;
   border: none;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #FF85C1; /* Rosa più chiaro */
+  background-color: #FF85C2; /* Rosa più chiaro */
 }
 
 footer {
@@ -71,13 +71,11 @@ footer {
   display: none;
 }
 
-/* Link */
 a {
-  color: #FF69B4;
+  color: #FF69B4; /* Link rosa */
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
 }
-
