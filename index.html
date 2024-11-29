@@ -12,21 +12,8 @@
   </header>
 
   <main>
-    <!-- Sezione Registrazione -->
-    <section id="register-section">
-      <h2>Registrati</h2>
-      <form id="register-form">
-        <label for="register-email">Email:</label>
-        <input type="email" id="register-email" required>
-        <label for="register-password">Password:</label>
-        <input type="password" id="register-password" required>
-        <button type="submit">Registrati</button>
-      </form>
-      <p>Hai già un account? <a href="#" id="go-to-login">Accedi</a></p>
-    </section>
-
     <!-- Sezione Login -->
-    <section id="login-section" style="display: none;">
+    <section id="login-section">
       <h2>Accedi</h2>
       <form id="login-form">
         <label for="email">Email:</label>
@@ -35,7 +22,22 @@
         <input type="password" id="password" required>
         <button type="submit">Accedi</button>
       </form>
-      <p>Non hai un account? <a href="#" id="go-to-register">Registrati</a></p>
+      <p>Non hai un account? <a href="#" id="show-register">Iscriviti</a></p>
+    </section>
+
+    <!-- Sezione Registrazione -->
+    <section id="register-section" style="display: none;">
+      <h2>Iscriviti</h2>
+      <form id="register-form">
+        <label for="reg-email">Email:</label>
+        <input type="email" id="reg-email" required>
+        <label for="reg-password">Password:</label>
+        <input type="password" id="reg-password" required>
+        <label for="confirm-password">Conferma Password:</label>
+        <input type="password" id="confirm-password" required>
+        <button type="submit">Iscriviti</button>
+      </form>
+      <p>Hai già un account? <a href="#" id="show-login">Accedi</a></p>
     </section>
 
     <!-- Sezione Tracker -->
@@ -57,6 +59,10 @@
   <footer>
     <p>© 2024 Calcolatore di Gravidanza</p>
   </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
 
   <script src="script.js"></script>
 </body>
